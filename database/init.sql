@@ -29,7 +29,9 @@ CREATE TABLE IF NOT EXISTS restoration_plan (
   method TEXT,
   risk_assessment TEXT,
   approval_status TEXT,
-  owner_id TEXT
+  owner_id TEXT,
+  version_no INTEGER,
+  origin_plan_id INTEGER
 );
 
 CREATE TABLE IF NOT EXISTS restoration_step (
@@ -52,6 +54,19 @@ CREATE TABLE IF NOT EXISTS image_version (
   file_path TEXT,
   capture_at TEXT,
   note TEXT
+);
+
+CREATE TABLE IF NOT EXISTS plan_archive (
+  id INTEGER PRIMARY KEY,
+  plan_id INTEGER,
+  archive_version INTEGER,
+  plan_title TEXT,
+  method TEXT,
+  risk_assessment TEXT,
+  steps_snapshot TEXT,
+  images_snapshot TEXT,
+  archived_by TEXT,
+  archived_at TEXT
 );
 
 CREATE TABLE IF NOT EXISTS audit_log (

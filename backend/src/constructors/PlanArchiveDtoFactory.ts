@@ -1,0 +1,1 @@
+export const createPlanArchiveDto = (overrides = {}) => ({ id: 1, plan_id: 1, archive_version: 1, plan_title: "plan title 1", method: "method 1", risk_assessment: "risk assessment 1", steps_snapshot: "[]", images_snapshot: "[]", archived_by: "archivist 1", archived_at: "2026-06-20T09:00:00Z", ...overrides });

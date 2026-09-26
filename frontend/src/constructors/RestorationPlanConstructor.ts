@@ -9,6 +9,8 @@ export const createDefaultRestorationPlan = (overrides: Partial<RestorationPlan>
   risk_assessment: "risk assessment 1" as never,
   approval_status: "SUBMITTED" as never,
   owner_id: 1 as never,
+  version_no: 1 as never,
+  origin_plan_id: null as never,
   ...overrides
 });
 

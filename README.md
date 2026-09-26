@@ -57,6 +57,14 @@ backend/src/routes, controllers, services, models, repositories, middlewares, co
 - RelicCondition: constants/RelicCondition、types/RelicCondition、constructors、logTemplates、errorMessages、筛选器、展示组件/控制器均有引用。
 - PlanApprovalStatus: constants/PlanApprovalStatus、types/PlanApprovalStatus、constructors、logTemplates、errorMessages、筛选器、展示组件/控制器均有引用。
 - DamageSeverity: constants/DamageSeverity、types/DamageSeverity、constructors、logTemplates、errorMessages、筛选器、展示组件/控制器均有引用。
+- ArchiveDiffKind: constants/ArchiveDiffKind、types/ArchiveDiff、utils/archiveDiff、components/common/ArchiveDiffList、后端 PlanArchiveService 均有引用。
+
+## 归档快照规则
+
+- 归档在生成当时保存完整修复档案（`plan_archive`）：方案方法、风险说明、全部步骤和对应影像版本，之后档案只读。
+- 来源记录（步骤、材料名称、影像版本）后续补录或更正时，档案仍按生成时内容显示，方案页仅列出待复核差异。
+- 未归档方案重新打开时继续跟随最新来源记录。
+- 已归档方案为只读，必须另存新版本（`version_no` 递增、`origin_plan_id` 指向首版）才能继续修复，旧档案按版本留查。
 
 ## 为什么会牵一发动全身
 

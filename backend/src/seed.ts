@@ -75,7 +75,9 @@ export const seed = {
       "method": "method 1",
       "risk_assessment": "risk assessment 1",
       "approval_status": "SUBMITTED",
-      "owner_id": 1
+      "owner_id": 1,
+      "version_no": 1,
+      "origin_plan_id": null
     },
     {
       "id": 2,
@@ -84,8 +86,10 @@ export const seed = {
       "plan_title": "plan title 2",
       "method": "method 2",
       "risk_assessment": "risk assessment 2",
-      "approval_status": "APPROVED",
-      "owner_id": 2
+      "approval_status": "ARCHIVED",
+      "owner_id": 2,
+      "version_no": 1,
+      "origin_plan_id": null
     },
     {
       "id": 3,
@@ -94,8 +98,22 @@ export const seed = {
       "plan_title": "plan title 3",
       "method": "method 3",
       "risk_assessment": "risk assessment 3",
+      "approval_status": "APPROVED",
+      "owner_id": 3,
+      "version_no": 1,
+      "origin_plan_id": null
+    },
+    {
+      "id": 4,
+      "relic_id": 1,
+      "damage_record_id": 1,
+      "plan_title": "plan title 4",
+      "method": "method 4",
+      "risk_assessment": "risk assessment 4",
       "approval_status": "DRAFT",
-      "owner_id": 3
+      "owner_id": 1,
+      "version_no": 1,
+      "origin_plan_id": null
     }
   ],
   "restorationStep": [
@@ -114,7 +132,7 @@ export const seed = {
       "plan_id": 2,
       "step_order": "step order 2",
       "technique": "technique 2",
-      "material_used": "material used 2",
+      "material_used": "material used 2 (revised)",
       "operator_id": 2,
       "step_status": "APPROVED",
       "finished_at": "2026-06-12T09:00:00Z"
@@ -149,7 +167,7 @@ export const seed = {
       "image_type": "DAMAGED",
       "file_path": "file path 2",
       "capture_at": "2026-06-12T09:00:00Z",
-      "note": "note 2"
+      "note": "note 2 (revised)"
     },
     {
       "id": 3,
@@ -160,6 +178,20 @@ export const seed = {
       "file_path": "file path 3",
       "capture_at": "2026-06-13T09:00:00Z",
       "note": "note 3"
+    }
+  ],
+  "planArchive": [
+    {
+      "id": 1,
+      "plan_id": 2,
+      "archive_version": 1,
+      "plan_title": "plan title 2",
+      "method": "method 2",
+      "risk_assessment": "risk assessment 2",
+      "steps_snapshot": "[{\"id\":2,\"plan_id\":2,\"step_order\":\"step order 2\",\"technique\":\"technique 2\",\"material_used\":\"material used 2\",\"operator_id\":2,\"step_status\":\"APPROVED\",\"finished_at\":\"2026-06-12T09:00:00Z\"}]",
+      "images_snapshot": "[{\"id\":2,\"relic_id\":2,\"plan_id\":2,\"version_no\":\"version no 2\",\"image_type\":\"DAMAGED\",\"file_path\":\"file path 2\",\"capture_at\":\"2026-06-12T09:00:00Z\",\"note\":\"note 2\"}]",
+      "archived_by": "archivist 1",
+      "archived_at": "2026-06-20T09:00:00Z"
     }
   ]
 } as const;
