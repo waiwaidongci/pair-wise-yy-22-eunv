@@ -2,6 +2,23 @@
 
 面向博物馆修复团队的文物病害记录、修复方案、影像版本和审批归档平台。
 
+## 归档与版本留查
+
+- 方案从编制到归档期间，步骤、材料名称和影像版本可随时补录或更正；未归档方案重新打开时始终跟随最新来源数据。
+- 归档时生成**当时的完整修复档案**（`RestorationArchive`）：方案方法、风险说明、全部步骤和对应影像版本整体快照，归档后不再随来源变化。
+- 来源记录后续发生补录/更正时，档案仍按生成时内容显示，方案页仅列出**待复核差异**（`GET /api/restoration-archive/plan/:planId/diff`）。
+- 已归档方案需**另存新版本**（`POST /api/restoration-archive/reopen`）才能继续修复，再次归档生成 `archive_no + 1` 的新档案，旧档案按版本留查。
+
+归档相关接口：
+
+| 方法 | 路径 | 说明 |
+|---|---|---|
+| GET | `/api/restoration-archive/plan/:planId` | 某方案的全部档案版本（按版本倒序） |
+| GET | `/api/restoration-archive/plan/:planId/diff` | 最新档案与当前来源的待复核差异 |
+| GET | `/api/restoration-archive/:id` | 单个档案快照详情 |
+| POST | `/api/restoration-archive` | 归档，生成当时完整快照 |
+| POST | `/api/restoration-archive/reopen` | 已归档方案另存新版本继续修复 |
+
 ## 快速启动
 
 ```bash
@@ -55,8 +72,9 @@ backend/src/routes, controllers, services, models, repositories, middlewares, co
 ## 枚举/常量出现位置清单
 
 - RelicCondition: constants/RelicCondition、types/RelicCondition、constructors、logTemplates、errorMessages、筛选器、展示组件/控制器均有引用。
-- PlanApprovalStatus: constants/PlanApprovalStatus、types/PlanApprovalStatus、constructors、logTemplates、errorMessages、筛选器、展示组件/控制器均有引用。
+- PlanApprovalStatus: constants/PlanApprovalStatus、types/PlanApprovalStatus、constructors、logTemplates、errorMessages、筛选器、展示组件/控制器均有引用；归档动作会把方案置为 `ARCHIVED`。
 - DamageSeverity: constants/DamageSeverity、types/DamageSeverity、constructors、logTemplates、errorMessages、筛选器、展示组件/控制器均有引用。
+- RestorationArchive（归档实体）: models/RestorationArchive、types/RestorationArchivePayload（含 ArchiveDiffEntry）、constructors/RestorationArchiveDtoFactory（快照构造）、constants/logTemplates（归档/另存新版本/差异复核/导出）、constants/errorCodes + errorMessages（PLAN_NOT_FOUND、PLAN_ALREADY_ARCHIVED、PLAN_NOT_ARCHIVED、ARCHIVE_NOT_FOUND）、repositories/services/controllers/routes、前端 api/stores/constructors、components/common/ArchiveDiffList 与 ArchiveSnapshotCard、pages/PlansPage 均有引用。
 
 ## 为什么会牵一发动全身
 

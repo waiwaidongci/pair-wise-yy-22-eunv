@@ -54,6 +54,21 @@ CREATE TABLE IF NOT EXISTS image_version (
   note TEXT
 );
 
+CREATE TABLE IF NOT EXISTS restoration_archive (
+  id INTEGER PRIMARY KEY,
+  plan_id TEXT,
+  archive_no TEXT,
+  plan_title TEXT,
+  method TEXT,
+  risk_assessment TEXT,
+  approval_status TEXT,
+  owner_id TEXT,
+  steps TEXT,
+  images TEXT,
+  archived_by TEXT,
+  archived_at TEXT
+);
+
 CREATE TABLE IF NOT EXISTS audit_log (
   id INTEGER PRIMARY KEY,
   actor TEXT,
